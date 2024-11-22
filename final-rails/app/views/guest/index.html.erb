@@ -1,4 +1,24 @@
 <div class="w-full text-center">
   <h1 class="font-bold text-4xl">Welcome!</h1>
-  <p>To add a playlist, please login</p>
+  <p class="p-4 text-lg">To add a playlist, please <a href="/users/sign_in" class="underline text-blue-800">login</a> or <a href="/users/sign_up" class="underline text-blue-800">sign up.</a></p>
+
+  <h2 class="font-bold text-3xl p-4">Here's Some Playlists Other Users Have Made!</h2>
+
+  <div id="playlists" class="min-w-full">
+    <% if !@playlists.empty? %>
+    <div class="grid grid-cols-3 gap-4">
+      
+      <% @playlists.each do |playlist| %>
+        <div class="shadow m-2 p-4 rounded">
+          <%= render playlist %>
+          <p class="p-2">
+            <%= link_to "Login to View", playlist, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="p-4 text-lg">There are no user added playlists yet... <a href="/users/sign_up" class="underline text-blue-800">Sign up</a> to add yours today!</p>
+    <% end %>
+    </div>
+  </div>
 </div>
