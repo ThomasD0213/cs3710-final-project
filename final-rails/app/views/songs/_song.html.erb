@@ -8,10 +8,15 @@
     <strong class="block font-medium mb-1">Album:</strong>
     <%= song.album %>
   </p>
+  
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Artist:</strong>
+    <%= song.artist %>
+  </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Length:</strong>
-    <%= song.length %>
+    <%=song.length.to_s[0..-3]%>:<%=song.length.to_s.last(2)%>
   </p>
 
 </div>

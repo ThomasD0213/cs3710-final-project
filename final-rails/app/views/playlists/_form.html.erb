@@ -20,6 +20,30 @@
     <%= form.label :description %>
     <%= form.text_field :description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+  
+  <div class="my-5">
+    <%= form.label :songs %>
+    <table class="table-auto border-collapse block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full">
+      <thead>
+        <tr class="">
+          <th></th>
+          <th class="px-6 py-5">Song</th>
+          <th class="px-6 py-5">Artist</th>
+          <th class="px-6 py-5">Album</th>
+        <tr>
+      </thead>
+      <tbody class="w-full">
+        <% for song in Song.all %>
+          <tr>
+            <td class="px-6 py-5"><%= check_box_tag "playlist[song_ids][]", song.id, @playlist.songs.include?(song) %></td>
+            <td class="px-6 py-5"><%= song.name %></td>
+            <td class="px-6 py-5"><%= song.album %></td>
+            <td class="px-6 py-5"><%= song.artist %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="my-5 hidden">
     <%= form.label :user_id %>

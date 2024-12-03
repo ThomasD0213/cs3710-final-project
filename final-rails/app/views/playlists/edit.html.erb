@@ -2,7 +2,32 @@
   <h1 class="font-bold text-4xl">Editing playlist</h1>
 
   <%= render "form", playlist: @playlist %>
-
   <%= link_to "Show this playlist", @playlist, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <%= link_to "Back to playlists", playlists_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+  <div class="mx-auto py-5">
+    <h1 class="text-3xl">Recommendations: </h1>
+  </div>
+  <table class="table-auto border-collapse block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full">
+    <thead>
+      <tr class="">
+        <th></th>
+        <th class="px-6 py-5">Song</th>
+        <th class="px-6 py-5">Artist</th>
+        <th class="px-6 py-5">Album</th>
+      <tr>
+    </thead>
+    <tbody class="w-full">
+      <% for song in Song.all %>
+        <% if !@playlist.songs.include?(song) && !@playlist.songs.where(artist: song.artist).empty? %>
+        <tr>
+          <td class="px-6 py-5"><%= song.name %></td>
+          <td class="px-6 py-5"><%= song.album %></td>
+          <td class="px-6 py-5"><%= song.artist %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>

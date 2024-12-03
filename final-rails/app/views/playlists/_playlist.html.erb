@@ -13,5 +13,28 @@
     <strong class="block font-medium mb-1">User:</strong>
     <%= playlist.user_id %>
   </p>
-
+  
+  <div>
+    <strong class="block font-medium mb-1">Songs:</strong>
+    <table class="table-auto block rounded-md outline-none px-3 py-2 mt-2 w-full">
+      <thead>
+        <tr class="">
+          <th class="px-6 py-5">Song</th>
+          <th class="px-6 py-5">Artist</th>
+          <th class="px-6 py-5">Album</th>
+        <tr>
+      </thead>
+      <tbody class="w-full">
+        <% for song in Song.all %>
+          <% if playlist.songs.include?(song) %>
+          <tr>
+            <td class="px-3 py-2 text-md"><%= song.name %></td>
+            <td class="px-3 py-2 text-md"><%= song.album %></td>
+            <td class="px-3 py-2 text-md"><%= song.artist %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
