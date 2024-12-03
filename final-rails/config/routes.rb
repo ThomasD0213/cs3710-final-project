@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :songs
   resources :playlists
   get 'guest/index'
   devise_for :users
